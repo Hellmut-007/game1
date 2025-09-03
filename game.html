@@ -321,6 +321,8 @@ function gameOver(){
     const coinsFromScore = Math.floor(score/10);
     coins += coinsFromScore;
 
+    player.src = deathSprite;
+    
     // Coins in localStorage speichern
     let totalCoins = parseInt(localStorage.getItem("coins"))||0;
     totalCoins += coins;
