@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Hauptmenü</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(160deg, #222, #444);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .stats {
+      margin-bottom: 30px;
+      font-size: 20px;
+    }
+
+    .menu button {
+      display: block;
+      margin: 12px;
+      padding: 12px 20px;
+      font-size: 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background: #555;
+      color: #fff;
+      transition: 0.2s;
+    }
+
+    .menu button:hover {
+      background: #777;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>GameName</h1>
+  <h1>🏆 Hauptmenü</h1>
+  <div class="stats">
+    Highscore: <span id="highscore">0</span><br>
+    Münzen: <span id="coins">0</span>
+  </div>
+  <div class="menu">
+    <a href="shop.html"><button>🛒 Shop</button></a>
+    <a href="game.html"><button>🎮 Spiel starten</button></a>
+    <button onclick="quitGame()">❌ Beenden</button>
+    <a href="dev.html"><button>devtools</button></a>
+  </div>
+
+  <script>
+    // Highscore und Münzen aus Speicher laden
+    document.getElementById("highscore").textContent =
+      localStorage.getItem("highscore") || 0;
+    document.getElementById("coins").textContent =
+      localStorage.getItem("coins") || 0;
+
+    function quitGame() {
+      if (window.close) {
+        window.close();
+      } else {
+        alert("Beenden nicht möglich. Schließe das Fenster/Tab bitte manuell.");
+      }
+    }
+  </script>
+</body>
+
+</html>

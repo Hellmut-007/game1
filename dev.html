@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Spiel Setup</title>
+<style>
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #111;
+    color: white;
+    font-family: Arial, sans-serif;
+    flex-direction: column;
+}
+input {
+    padding: 10px;
+    font-size: 18px;
+    margin: 10px;
+    width: 200px;
+    text-align: center;
+}
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background: gray;
+    color: white;
+    margin: 5px;
+}
+</style>
+</head>
+<body>
+<h1>Coins für das Spiel einstellen</h1>
+<input id="coinsInput" type="number" min="0" value="0">
+<div>
+    <button onclick="apply()">Apply</button>
+    <button onclick="ToMenu()">Zurück zum Menü</button>
+</div>
+
+<script>
+function apply() {
+    const coins = parseInt(document.getElementById("coinsInput").value) || 0;
+    localStorage.setItem("coins", coins);
+}
+
+function ToMenu() {
+    window.location.href = "menu.html"; // zurück zum Menü
+}
+
+// Optional: vorhandene Coins laden
+document.addEventListener("DOMContentLoaded", () => {
+    const savedCoins = parseInt(localStorage.getItem("coins")) || 0;
+    document.getElementById("coinsInput").value = savedCoins;
+});
+</script>
+</body>
+</html>
