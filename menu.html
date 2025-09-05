@@ -25,6 +25,28 @@
     .stats {
       margin-bottom: 30px;
       font-size: 20px;
+      text-align: center;      
+      width: 100%;             
+      display: flex;           
+      flex-direction: column;  
+      align-items: center;     
+      justify-content: center; 
+    }
+    
+    .highscore-label {
+      color: #ff4444; 
+      font-weight: bold;
+    }
+
+    .coins-label {
+      color: #ffe066; 
+      font-weight: bold;
+    }
+
+    .menu {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .menu button {
@@ -43,21 +65,25 @@
     .menu button:hover {
       background: #777;
     }
+
+    .menu .quit-btn {
+      margin-top: 32px;
+    }
   </style>
 </head>
 
 <body>
   <h1>GameName</h1>
-  <h1>🏆 Hauptmenü</h1>
+  <h1>Hauptmenü</h1>
   <div class="stats">
-    Highscore: <span id="highscore">0</span><br>
-    Münzen: <span id="coins">0</span>
+    <span class="highscore-label">Highscore <span id="highscore">0</span></span><br>
+    <span class="coins-label">Münzen <span id="coins">0</span></span>
   </div>
-  <div class="menu">
-    <a href="shop.html"><button>🛒 Shop</button></a>
-    <a href="game.html"><button>🎮 Spiel starten</button></a>
-    <button onclick="quitGame()">❌ Beenden</button>
+   <div class="menu">
+    <a href="shop.html"><button>Shop</button></a>
+    <a href="game.html"><button>Spiel starten</button></a>
     <a href="dev.html"><button>devtools</button></a>
+    <button class="quit-btn" onclick="quitGame()">Beenden</button>
   </div>
 
   <script>
@@ -66,6 +92,8 @@
       localStorage.getItem("highscore") || 0;
     document.getElementById("coins").textContent =
       localStorage.getItem("coins") || 0;
+
+    //default werte setzen falls nicht vorhanden
 
     function quitGame() {
       if (window.close) {
