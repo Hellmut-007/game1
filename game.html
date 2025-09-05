@@ -91,12 +91,12 @@ body {
     <div id="scoreBoard">Score: 0</div>
     <div id="coinsBoard">Coins: 0</div>
     <div id="gameOver">
-        <div id="gameOverText">💥 Game Over</div>
+        <div id="gameOverText">Game Over</div>
         <div id="rewardText"></div>
         <div id="finalScoreText"></div>
         <div id="highScoreText"></div>
-        <button onclick="restartGame()">🔄 Neustart</button>
-        <a href="menu.html"><button>🏠 Hauptmenü</button></a>
+        <button onclick="restartGame()">Neustart</button>
+        <a href="menu.html"><button>Hauptmenü</button></a>
     </div>
 </div>
 
@@ -130,8 +130,9 @@ const ground = document.getElementById("ground");
 
 const groundHeight = 40;
 let isJumping=false;
-let jumpHeight=100;
-let jumpDuration=400;
+let jumpHeight=150
+
+let jumpDuration=localStorage.getItem("jumpDuration") ? parseInt(localStorage.getItem("jumpDuration")) : 600;
 
 let obstacles=[];
 const baseSpeedDefault=3;
@@ -209,6 +210,16 @@ function handleJump(e){
     if(e.code === "Space") jump();
 }
 document.addEventListener("keydown", handleJump);
+
+// Allow click/tap to jump
+gameArea.addEventListener("mousedown", function() {
+    jump();
+});
+gameArea.addEventListener("touchstart", function(e) {
+    e.preventDefault();
+    jump();
+}, { passive: false });
+
 
 function updateHealthBar() {
     const percent = (currentHealth / maxHealth) * 100;
